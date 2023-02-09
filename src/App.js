@@ -11,7 +11,7 @@ const { REACT_APP_BACKEND } = process.env;
 function App() {
     console.log(REACT_APP_BACKEND);
     //Call user defined hook useAxios
-    const { scrapers, error, loading, reload } = useAxios('http://localhost:5400/scrapers');
+    const { scrapers, error, loading, reload } = useAxios('https://api.github.com/repos/Equator-Studios/scrapers/contents/scrapers');
 
     //Columns in the grid
     const columns = React.useMemo(
@@ -51,7 +51,7 @@ function App() {
             {
                 error && (
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                        <p style={{ color: "red", fontWeight: "bold" }}>Error: {error.message}</p>
+                        <p style={{ color: "red", fontWeight: "bold" }}>Error: Please try again!!</p>
                         <Button variant="contained" onClick={reload}>Retry</Button>
                     </div>
                 )
