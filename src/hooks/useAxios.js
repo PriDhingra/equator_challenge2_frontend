@@ -10,8 +10,15 @@ export default function useAxios(url) {
     const fetchScrapers = async () => {
         try {
             setLoading(true);
-            const scrapersResponse = await axios.get(url);
-            setScrappers(scrapersResponse.data);
+            axios.get(url).then(response => {
+                const allScrappers = response.data.map((scraper, index) => ({
+                    id: index + 1,
+                    name: scraper.name,
+                    gitHubUrl: scraper.html_url,
+                    downloadUrl: scraper.download_url
+                }))
+                setScrappers(allScrappers);
+            });
         } catch(err) {
             setError(err);
         } finally {
